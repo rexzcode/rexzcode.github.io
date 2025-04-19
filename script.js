@@ -1060,3 +1060,32 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateMetrics, 5000);        // Every 5 seconds
   setInterval(updateTimestamps, 3600000);  // Every hour
 });
+
+// Animate comparison chart progress bars
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-bar');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const progressBar = entry.target;
+        const progressFill = progressBar.querySelector('.progress-fill');
+        const value = progressBar.getAttribute('data-value');
+        
+        progressFill.style.width = `${value}%`;
+        progressBar.classList.add('animated');
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  progressBars.forEach(bar => {
+    observer.observe(bar);
+  });
+}
+
+// Initialize the comparison chart animation
+document.addEventListener('DOMContentLoaded', () => {
+  animateProgressBars();
+});
