@@ -9,6 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="loading-screen">
+    <canvas id="loading-canvas"></canvas>
+    <div class="loading-bar-container">
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+
   <div id="vanta-bg"></div>
 
   <nav>
@@ -99,8 +106,9 @@
     document.addEventListener("mousemove", function(e) {
       const glow = document.createElement("div");
       glow.className = "cursor-glow";
-      glow.style.left = e.pageX + "px";
-      glow.style.top = e.pageY + "px";
+      glow.style.left = (e.clientX) + "px";
+      glow.style.top = (e.clientY) + "px";
+      glow.style.position = "fixed";
       document.body.appendChild(glow);
       setTimeout(() => glow.remove(), 600);
     });
@@ -108,7 +116,7 @@
   
   <style>
   .cursor-glow {
-    position: absolute;
+    position: fixed;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -118,11 +126,12 @@
     filter: blur(8px);
     transform: translate(-50%, -50%);
     animation: fadeOut 0.6s ease-out;
+    z-index: 10000;
   }
   
   @keyframes fadeOut {
-    0% { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 0; transform: scale(2); }
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
   }
   </style>
   
