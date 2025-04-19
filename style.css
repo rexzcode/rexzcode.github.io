@@ -2221,126 +2221,92 @@ nav ul {
 
 /* Comparison Chart Styles */
 .comparison-chart {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 40px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
 .chart-header {
   display: grid;
-  grid-template-columns: 200px repeat(4, 1fr);
-  gap: 20px;
-  padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 20px;
+  grid-template-columns: 150px repeat(5, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
-.feature-label, .executor-label {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
+.executor-label {
   text-align: center;
+  font-weight: bold;
+  color: white;
+  padding: 0.5rem;
+}
+
+.feature-label {
+  font-weight: bold;
+  color: white;
+}
+
+.chart-content {
+  display: grid;
+  gap: 1rem;
 }
 
 .chart-row {
   display: grid;
-  grid-template-columns: 200px repeat(4, 1fr);
-  gap: 20px;
-  padding: 15px;
+  grid-template-columns: 150px repeat(5, 1fr);
+  gap: 1rem;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .feature-name {
-  font-size: 1rem;
-  color: #fff;
+  color: white;
   font-weight: 500;
+}
+
+.feature-value {
+  min-width: 120px;
 }
 
 .progress-bar {
   width: 100%;
-  height: 20px;
+  height: 24px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-  border-radius: 10px;
-  transition: width 1s ease-in-out;
+  background: linear-gradient(90deg, #6e3bff 0%, #ae00ff 100%);
+  border-radius: 12px;
+  transition: width 0.5s ease;
+  width: var(--progress-width);
 }
 
 .progress-text {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.feature-comparison {
-  margin-top: 40px;
-}
-
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.comparison-card {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.comparison-card h3 {
-  color: #fff;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.feature-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.feature-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-}
-
-.feature-name {
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-.feature-status {
-  font-size: 1.1rem;
+  color: white;
   font-weight: bold;
 }
 
 .feature-status.available {
-  color: #00ff00;
+  color: #ff3b3b;
 }
 
 .feature-status.unavailable {
-  color: #ff4444;
+  color: #00ff66;
+}
+
+.paid-status .feature-status.available {
+  color: #ff3b3b;
+}
+
+.paid-status .feature-status.unavailable {
+  color: #00ff66;
 }
 
 /* Responsive Styles */
@@ -2370,4 +2336,116 @@ nav ul {
   .comparison-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Feature Comparison Grid Styles */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.comparison-card {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(174, 0, 255, 0.3);
+}
+
+.comparison-card h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.feature-name {
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.feature-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Update checkmark and cross colors */
+.feature-status.available {
+  color: #27c93f;
+}
+
+.feature-status.unavailable {
+  color: #ff5f56;
+}
+
+/* Special styling for paid status */
+.paid-status .feature-status.available {
+  color: #ff5f56; /* Red for Paid */
+}
+
+.paid-status .feature-status.unavailable {
+  color: #27c93f; /* Green for Free */
+}
+
+/* Hover effects */
+.feature-item:hover {
+  background: rgba(174, 0, 255, 0.1);
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+/* Comparison Section Container */
+.section-content {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(174, 0, 255, 0.3);
+  box-shadow: 0 0 30px rgba(174, 0, 255, 0.2);
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.section-content:hover {
+  border-color: #ae00ff;
+  box-shadow: 0 0 40px rgba(174, 0, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.section-title {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.comparison-chart {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  border: 1px solid rgba(174, 0, 255, 0.2);
+  margin-bottom: 2rem;
+}
+
+.comparison-chart:hover {
+  border-color: #ae00ff;
+  box-shadow: 0 0 20px rgba(174, 0, 255, 0.2);
+  transition: all 0.3s ease;
 }
