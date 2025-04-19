@@ -29,7 +29,6 @@
           <a href="#compatibility">Compatibility</a>
           <a href="#security">Security</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="#about">About</a>
         </div>
       </div>
     </div>
@@ -192,6 +191,89 @@
           </div>
         </div>
       </div>
+
+      <div class="executor-window">
+        <div class="executor-titlebar">
+          <div class="titlebar-buttons">
+            <span class="window-btn close"></span>
+            <span class="window-btn minimize"></span>
+            <span class="window-btn maximize"></span>
+          </div>
+          <div class="titlebar-title">Solace - v1.0.0 Tech Demo</div>
+          <div class="titlebar-controls">
+            <button class="control-btn refresh-btn">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="executor-sidebar">
+          <div class="sidebar-section">
+            <button class="sidebar-btn">
+              <i class="fas fa-folder"></i>
+            </button>
+            <button class="sidebar-btn">
+              <i class="fas fa-plug"></i>
+            </button>
+            <button class="sidebar-btn">
+              <i class="fas fa-terminal"></i>
+            </button>
+            <button class="sidebar-btn">
+              <i class="fas fa-cog"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="executor-main">
+          <div class="editor-tabs">
+            <div class="tab active">
+              <span>Untitled-1</span>
+              <button class="tab-close">×</button>
+            </div>
+            <button class="new-tab-btn">+</button>
+          </div>
+          
+          <div class="editor-container">
+            <div class="line-numbers"></div>
+            <div class="editor" contenteditable="true">print("Hello, Solace!")</div>
+          </div>
+
+          <div class="executor-controls">
+            <div class="control-group">
+              <button class="control-btn execute-btn">
+                <i class="fas fa-play"></i> Execute
+              </button>
+              <button class="control-btn inject-btn">
+                <i class="fas fa-syringe"></i> Inject
+              </button>
+            </div>
+            <div class="control-group">
+              <button class="control-btn">
+                <i class="fas fa-file"></i>
+              </button>
+              <button class="control-btn">
+                <i class="fas fa-save"></i>
+              </button>
+              <button class="control-btn">
+                <i class="fas fa-folder-open"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="executor-terminal">
+            <div class="terminal-header">
+              Terminal
+            </div>
+            <div class="terminal-content">
+              <div class="terminal-line">
+                <span class="timestamp">[2024-08-22 10:44:21.284]</span>
+                <span class="debug-tag">[debug]</span>
+                <span class="message">Solace is up to date.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -224,6 +306,15 @@
   <section id="security" class="section-container">
     <div class="section-content">
       <h2 class="section-title">Security First</h2>
+      <div class="security-message">
+        <p>At Solace, we take security extremely seriously. This project was born from a passion for creating something meaningful in a space often plagued by malicious actors. I created Solace as a personal project to provide a safe, reliable alternative to the countless fake executors and RATs that flood the market.</p>
+        
+        <p>My motivation stems from witnessing too many users fall victim to scams and malware disguised as legitimate tools. These malicious programs not only steal personal information but also ruin the experience for genuine users who just want to enhance their gameplay.</p>
+        
+        <p>Solace is built with transparency and trust at its core. Every line of code is written with security in mind, and I'm committed to maintaining an open dialogue with the community about how the executor works and what measures are in place to protect users.</p>
+        
+        <p>This isn't just another executor - it's a passion project created for my enjoyment and your satisfaction. I believe in providing a tool that's both powerful and safe, where users can focus on their creativity without worrying about their security being compromised.</p>
+      </div>
       <div class="security-shield">
         <div class="shield-icon"></div>
         <div class="security-features">
@@ -512,6 +603,8 @@
 <audio id="bgMusic" loop></audio>
 <button id="musicToggle"><span class="icon">🔊</span><span class="track-name"></span></button>
 <script src="script.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </body>
 </html>

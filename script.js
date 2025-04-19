@@ -879,3 +879,95 @@ document.querySelector('.prompt-input').addEventListener('keypress', (e) => {
     document.querySelector('.generate-btn').click();
   }
 });
+
+// Executor Demo Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Line Numbers
+  const editor = document.querySelector('.editor');
+  const lineNumbers = document.querySelector('.line-numbers');
+  
+  function updateLineNumbers() {
+    const lines = editor.innerText.split('\n').length;
+    lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => `${i + 1}`).join('\n');
+  }
+  
+  editor.addEventListener('input', updateLineNumbers);
+  editor.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      document.execCommand('insertText', false, '    ');
+    }
+  });
+  
+  // Initial line number
+  updateLineNumbers();
+  
+  // Control Buttons
+  const executeBtn = document.querySelector('.execute-btn');
+  const injectBtn = document.querySelector('.inject-btn');
+  const terminalContent = document.querySelector('.terminal-content');
+  
+  executeBtn.addEventListener('click', () => {
+    const timestamp = new Date().toISOString().replace('T', ' ').slice(0, -5);
+    const newLine = document.createElement('div');
+    newLine.className = 'terminal-line';
+    newLine.innerHTML = `
+      <span class="timestamp">[${timestamp}]</span>
+      <span class="debug-tag">[info]</span>
+      <span class="message">Executing script...</span>
+    `;
+    terminalContent.appendChild(newLine);
+    terminalContent.scrollTop = terminalContent.scrollHeight;
+  });
+  
+  injectBtn.addEventListener('click', () => {
+    const timestamp = new Date().toISOString().replace('T', ' ').slice(0, -5);
+    const newLine = document.createElement('div');
+    newLine.className = 'terminal-line';
+    newLine.innerHTML = `
+      <span class="timestamp">[${timestamp}]</span>
+      <span class="debug-tag">[info]</span>
+      <span class="message">Injecting into process...</span>
+    `;
+    terminalContent.appendChild(newLine);
+    terminalContent.scrollTop = terminalContent.scrollHeight;
+  });
+  
+  // Tab Management
+  const newTabBtn = document.querySelector('.new-tab-btn');
+  const tabsContainer = document.querySelector('.editor-tabs');
+  let tabCount = 1;
+  
+  newTabBtn.addEventListener('click', () => {
+    tabCount++;
+    const newTab = document.createElement('div');
+    newTab.className = 'tab';
+    newTab.innerHTML = `
+      <span>Untitled-${tabCount}</span>
+      <button class="tab-close">×</button>
+    `;
+    tabsContainer.insertBefore(newTab, newTabBtn);
+    
+    // Remove active class from other tabs
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    newTab.classList.add('active');
+  });
+  
+  // Handle tab close
+  tabsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tab-close')) {
+      const tab = e.target.parentElement;
+      if (!tab.classList.contains('active') || document.querySelectorAll('.tab').length > 1) {
+        tab.remove();
+      }
+    }
+  });
+  
+  // Handle tab selection
+  tabsContainer.addEventListener('click', (e) => {
+    if (e.target.closest('.tab') && !e.target.classList.contains('tab-close')) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      e.target.closest('.tab').classList.add('active');
+    }
+  });
+});

@@ -1321,45 +1321,289 @@ nav ul {
 .timeline-item:nth-child(5) { animation-delay: 0.5s; }
 
 /* Responsive Design */
+@media (max-width: 1400px) {
+  .section-container {
+    padding: 60px 40px;
+  }
+
+  .executor-window {
+    max-width: 95%;
+    height: 600px;
+  }
+
+  .feature-grid,
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .security-shield {
+    padding: 30px;
+  }
+
+  .security-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline {
+    max-width: 95%;
+  }
+
+  .developer-promise {
+    margin: 60px 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  nav {
+    padding: 12px 20px;
+    margin: 10px;
+  }
+
+  .solace-title {
+    font-size: 24px;
+  }
+
+  .executor-window {
+    height: 500px;
+  }
+
+  .editor-container {
+    font-size: 13px;
+  }
+
+  .control-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .executor-terminal {
+    height: 120px;
+  }
+
+  .use-case-prompt {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .prompt-input {
+    width: 100%;
+  }
+
+  .generate-btn {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .section-container {
     padding: 40px 20px;
   }
 
-  .feature-grid,
-  .features-grid,
-  .compatibility-grid {
-    grid-template-columns: 1fr;
+  .section-title {
+    font-size: 2em;
   }
 
-  .timeline::before {
-    left: 30px;
+  .nav-center {
+    display: none;
   }
 
-  .timeline-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 50px;
-  }
-
-  .timeline-icon {
-    position: absolute;
-    left: 0;
-  }
-
-  .timeline-content {
-    margin-left: 0;
-    max-width: 100%;
-  }
-
-  .security-shield,
-  .timeline,
-  .developer-promise {
-    padding: 20px;
-    margin: 20px;
+  .nav-right {
+    gap: 20px;
   }
 
   .security-features {
     grid-template-columns: 1fr;
+  }
+
+  .executor-window {
+    height: 600px;
+    margin: 20px 10px;
+    flex-direction: column;
+  }
+
+  .executor-sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .sidebar-section {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .executor-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .control-group {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .editor-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .terminal-content {
+    font-size: 12px;
+  }
+
+  .security-message p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .nav-dropdown-content {
+    min-width: 140px;
+  }
+
+  .executor-window {
+    height: 500px;
+    margin: 10px 5px;
+  }
+
+  .titlebar-title {
+    font-size: 12px;
+  }
+
+  .window-btn {
+    width: 10px;
+    height: 10px;
+  }
+
+  .editor-container {
+    font-size: 12px;
+  }
+
+  .line-numbers {
+    width: 30px;
+    font-size: 12px;
+  }
+
+  .control-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .terminal-header {
+    font-size: 12px;
+  }
+
+  .terminal-content {
+    font-size: 11px;
+  }
+
+  .timestamp {
+    display: none;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .control-btn:hover,
+  .sidebar-btn:hover,
+  .tab:hover {
+    transform: none;
+  }
+
+  .executor-window {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .editor-container {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  .terminal-content {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .executor-window {
+    border-width: 0.5px;
+  }
+
+  .line-numbers,
+  .editor {
+    font-size: 13px;
+  }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+  .executor-window {
+    height: 85vh;
+  }
+
+  .executor-terminal {
+    height: 100px;
+  }
+
+  .security-shield {
+    padding: 20px;
+  }
+
+  .section-container {
+    padding: 30px 20px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .executor-window {
+    border-color: rgba(174, 0, 255, 0.4);
+  }
+
+  .editor {
+    color: #e0e0e0;
+  }
+}
+
+/* Prevent Zoom on Input Focus for iOS */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Animations for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .executor-window {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+
+  .window-btn,
+  .control-btn,
+  .sidebar-btn {
+    display: none;
   }
 }
