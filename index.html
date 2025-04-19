@@ -11,8 +11,8 @@
 <body>
   <div id="loading-screen">
     <canvas id="loading-canvas"></canvas>
-    <div class="loading-bar-container">
-      <div class="loading-bar"></div>
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
     </div>
   </div>
 
@@ -193,6 +193,15 @@
       </div>
 
       <div class="executor-window">
+        <div class="mobile-overlay">
+          <div class="mobile-overlay-content">
+            <div class="desktop-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Desktop Only Feature</h3>
+            <p>The Solace executor demo is only available on desktop devices. Please switch to a desktop computer to access this feature.</p>
+          </div>
+        </div>
         <div class="executor-titlebar">
           <div class="titlebar-buttons">
             <span class="window-btn close"></span>
@@ -605,6 +614,39 @@
 <script src="script.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const editor = document.querySelector('.editor');
+    const lineNumbers = document.querySelector('.line-numbers');
+    
+    // Initial line numbers
+    updateLineNumbers();
+    
+    // Update line numbers when content changes
+    editor.addEventListener('input', updateLineNumbers);
+    editor.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        setTimeout(updateLineNumbers, 0);
+      }
+    });
+    
+    function updateLineNumbers() {
+      const lines = editor.innerText.split('\n');
+      lineNumbers.innerHTML = lines.map((_, index) => 
+        `<div class="line-number">${index + 1}</div>`
+      ).join('');
+    }
+  });
+</script>
+
+<style>
+  .line-number {
+    color: #666;
+    padding-right: 8px;
+    text-align: right;
+  }
+</style>
 
 </body>
 </html>
