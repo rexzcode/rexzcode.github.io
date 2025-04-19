@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solace</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Sections</button>
+        <div class="nav-dropdown-content">
+          <a href="#about">About</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-center">
+      <div class="solace-title">
+        <span class="letter" data-letter="S">S</span>
+        <span class="letter" data-letter="o">o</span>
+        <span class="letter" data-letter="l">l</span>
+        <span class="letter" data-letter="a">a</span>
+        <span class="letter" data-letter="c">c</span>
+        <span class="letter" data-letter="e">e</span>
+      </div>
+    </div>
+    <ul class="nav-right">
+      <li><a href="https://discord.gg/2dp63SsEf5" target="_blank">Discord</a></li>
+      <li><a href="https://www.youtube.com/@Rexi_ZTF" target="_blank">YouTube</a></li>
+    </ul>
+  </nav>
+
+  <div class="typing-container">
+    <h2 class="typewriter" id="typing"></h2>
+  </div>
+
+  <div class="profile-pic-container">
+    <div class="profile-pic-wrapper">
+      <img id="discord-pfp" class="profile-pic" alt="Discord PFP">
+      <div class="status-indicator"></div>
+    </div>
+    <div class="status-text"></div>
+    <div class="thought-bubble">
+      <div class="thought-bubble-content"></div>
+      <div class="thought-bubble-tail"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="text-box-wrapper">
+      <div class="text-box">
+      <h2>Executor</h2>
+      <p>Executors are roblox exploits that attach to the game and run code through an injected DLL</p>
+    </div>
+    <div class="text-box">
+      <h2>Scripts</h2>
+      <p>Scripts are the code ran by executors to change client sided stuff as in your player</p>
+    </div>
+      </div>
+  </div>
+
+  <div class="terminal-box">
+    <div class="terminal-header">
+      <span class="mac-dot red"></span>
+      <span class="mac-dot yellow"></span>
+      <span class="mac-dot green"></span>
+    </div>
+    <div class="terminal-text" id="terminalText"></div>
+  </div>
+  
+  <section id="about" class="about-section">
+    <div class="text-box">
+      <h2>About Solace</h2>
+      <p>
+        Solace is more than just a modern Roblox executor — it's the first AI-integrated execution platform of its kind.<br><br>
+        Designed exclusively for Windows, Solace introduces an intelligent execution environment that leverages real-time AI to enhance your scripting experience.<br><br>
+        At the core of Solace is a fully autonomous AI system capable of:<br><br>
+        🧠 <strong>Automatic Script Generation</strong> — Create functional and optimized scripts from scratch with minimal input<br>
+        🛠 <strong>Real-Time Debugging</strong> — Catch errors before execution using integrated AI-assisted logic checking<br>
+        🚀 <strong>Hands-Free Execution</strong> — Automatically run and manage scripts without manual oversight<br>
+        🔍 <strong>Future Vision: Game-Aware Scripting</strong> — A planned intelligent scanner will analyze in-game environments to generate more accurate and context-specific scripts<br><br>
+        Solace is built with both beginners and power users in mind. Its AI-driven architecture is designed to reduce complexity, eliminate common scripting errors, and make powerful script automation accessible to everyone.
+      </p>
+      
+    </div>
+  </section>
+
+  <button id="scrollToTop" class="scroll-to-top">
+    <span>↑</span>
+  </button>
+  
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      const glow = document.createElement("div");
+      glow.className = "cursor-glow";
+      glow.style.left = e.pageX + "px";
+      glow.style.top = e.pageY + "px";
+      document.body.appendChild(glow);
+      setTimeout(() => glow.remove(), 600);
+    });
+  </script>
+  
+  <style>
+  .cursor-glow {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ae00ff;
+    pointer-events: none;
+    opacity: 0.5;
+    filter: blur(8px);
+    transform: translate(-50%, -50%);
+    animation: fadeOut 0.6s ease-out;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2); }
+  }
+  </style>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.topology.min.js"></script>
+  <script>
+    VANTA.TOPOLOGY({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xac00ff,
+      backgroundColor: 0x1a0c2d
+    });
+  </script>
+
+<script>
+  const words = ["Welcome to Solace", "@Rexi_ Too good looking", "When will Roblox give up"];
+  let i = 0, j = 0, isDeleting = false;
+
+  function type() {
+    const typing = document.getElementById("typing");
+    const current = words[i];
+
+    typing.textContent = current.substring(0, j);
+
+    if (!isDeleting && j < current.length) {
+      j++;
+    } else if (isDeleting && j > 0) {
+      j--;
+    } else {
+      isDeleting = !isDeleting;
+      if (!isDeleting) i = (i + 1) % words.length;
+    }
+
+    setTimeout(type, isDeleting ? 60 : 120);
+  }
+
+  type();
+</script>
+
+<script>
+  const userID = "1252741219038265437";
+  const avatarURL = `https://cdn.discordapp.com/avatars/${userID}/avatar.png?size=512`;
+  document.getElementById("discord-pfp").src = avatarURL;
+</script>
+
+
+
+  
+
+
+  <script>
+    const terminalPresets = [
+      [
+        "> Initializing Solace Framework...",
+        "> Injecting Solace.DLL...",
+        "> Loading scripts...",
+        "> Protection bypassed.",
+        "> Ready."
+      ],
+      [
+        "> Scanning for vulnerable processes...",
+        "> Detected RobloxClient.exe",
+        "> Analyzing memory patterns...",
+        "> Bypassing anti-tamper measures...",
+        "> Connection established."
+      ],
+      [
+        "> Loading AI script generator...",
+        "> Initializing real-time debugging...",
+        "> Checking for updates...",
+        "> All systems operational.",
+        "> Ready for execution."
+      ],
+      [
+        "> Monitoring script performance...",
+        "> Optimizing execution speed...",
+        "> Scanning for new exploits...",
+        "> Analyzing game environment...",
+        "> Systems optimized."
+      ],
+      [
+        "> Generating context-aware scripts...",
+        "> Verifying script integrity...",
+        "> Checking for detection vectors...",
+        "> Updating exploit database...",
+        "> Database synchronized."
+      ],
+      [
+        "> Testing new bypass methods...",
+        "> Analyzing memory signatures...",
+        "> Optimizing injection process...",
+        "> Checking for game updates...",
+        "> Systems verified."
+      ],
+      [
+        "> Initializing AI core...",
+        "> Loading neural networks...",
+        "> Training models...",
+        "> AI systems ready.",
+        "> Autonomous mode enabled."
+      ],
+      [
+        "> Scanning game environment...",
+        "> Detecting player states...",
+        "> Analyzing game mechanics...",
+        "> Building execution plan...",
+        "> Ready for automation."
+      ],
+      [
+        "> Checking system integrity...",
+        "> Verifying security protocols...",
+        "> Testing bypass methods...",
+        "> All checks passed.",
+        "> Systems secure."
+      ],
+      [
+        "> Loading advanced features...",
+        "> Initializing AI assistance...",
+        "> Setting up automation...",
+        "> Features loaded.",
+        "> Ready for advanced execution."
+      ]
+    ];
+
+    const terminalElement = document.getElementById("terminalText");
+    let currentPreset = 0;
+    let lineIndex = 0;
+    let isFirstRun = true;
+
+    function typeTerminalLine() {
+      if (lineIndex >= terminalPresets[currentPreset].length) {
+        lineIndex = 0;
+        currentPreset = (currentPreset + 1) % terminalPresets.length;
+        terminalElement.innerHTML = ""; // Clear terminal before new preset
+        isFirstRun = false;
+      }
+      
+      const line = terminalPresets[currentPreset][lineIndex];
+      let charIndex = 0;
+
+      const interval = setInterval(() => {
+        terminalElement.innerHTML += line[charIndex];
+        charIndex++;
+        if (charIndex === line.length) {
+          terminalElement.innerHTML += "<br/>";
+          clearInterval(interval);
+          lineIndex++;
+          setTimeout(typeTerminalLine, 800);
+        }
+      }, 50);
+    }
+
+    typeTerminalLine();
+  </script>
+  </div>
+
+<audio id="bgMusic" loop></audio>
+<button id="musicToggle"><span class="icon">🔊</span><span class="track-name"></span></button>
+<script src="script.js"></script>
+
+</body>
+</html>
