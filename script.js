@@ -311,7 +311,7 @@ class LoadingAnimation {
     this.centerGlow = 0;
     this.loadingComplete = false;
     
-    // Hide scrollbars globally
+    // Initially pause the title animation
     const style = document.createElement('style');
     style.textContent = `
       body::-webkit-scrollbar {
@@ -321,10 +321,22 @@ class LoadingAnimation {
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+      .title-layers {
+        animation: none !important;
+      }
+      .title-layer.scan {
+        animation: none !important;
+      }
+      .title-layer.particles::before,
+      .title-layer.particles::after {
+        animation: none !important;
+      }
+      .title-layer.glow {
+        animation: none !important;
+      }
     `;
     document.head.appendChild(style);
     
-    // Still prevent scrolling during loading
     document.body.style.overflow = 'hidden';
     
     this.resizeCanvas();
@@ -458,6 +470,29 @@ class LoadingAnimation {
     this.ctx.fill();
   }
 
+  startTitleAnimation() {
+    // Remove the animation blocking styles
+    const newStyle = document.createElement('style');
+    newStyle.textContent = `
+      .title-layers {
+        animation: rotate3d 20s infinite linear !important;
+      }
+      .title-layer.scan {
+        animation: scan 2s infinite linear !important;
+      }
+      .title-layer.particles::before {
+        animation: particlePulse 4s infinite !important;
+      }
+      .title-layer.particles::after {
+        animation: particlePulse 4s infinite reverse !important;
+      }
+      .title-layer.glow {
+        animation: glowPulse 3s infinite !important;
+      }
+    `;
+    document.head.appendChild(newStyle);
+  }
+
   animate() {
     const currentTime = Date.now();
     const elapsed = currentTime - this.startTime;
@@ -466,6 +501,12 @@ class LoadingAnimation {
     if (this.loadingComplete) {
       document.body.style.overflow = '';
       this.loadingScreen.classList.add('hidden');
+      
+      // Wait for loading screen to fade out completely, then start title animation
+      setTimeout(() => {
+        this.startTitleAnimation();
+      }, 3500); // 1.5 second delay after fade starts
+      
       setTimeout(() => {
         this.loadingScreen.remove();
       }, 500);
@@ -487,9 +528,7 @@ class LoadingAnimation {
       this.loadingBar.style.transition = 'width 9s linear';
       this.loadingBar.style.width = '100%';
       
-      // Listen for the transition end to trigger fade out
       this.loadingBar.addEventListener('transitionend', () => {
-        // Add a small delay after the loading bar completes
         setTimeout(() => {
           this.loadingComplete = true;
         }, 500);
