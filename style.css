@@ -148,7 +148,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: -1;
+  z-index: -2;
 }
 
 .typing-container {
@@ -383,15 +383,15 @@ nav ul {
 }
 
 .status-indicator {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #1a0c2d;
-  background-color: #808080;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  white-space: nowrap;
+  max-width: fit-content;
 }
 
 .status-indicator.online {
@@ -415,11 +415,9 @@ nav ul {
 }
 
 .status-text {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #d58fff;
-  text-shadow: 0 0 10px #ae00ff;
-  text-transform: capitalize;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .terminal-box {
@@ -1948,5 +1946,275 @@ nav ul {
 
   .feature-grid {
     gap: 3rem;
+  }
+}
+
+/* Status Page Styles */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.status-card {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(174, 0, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-5px);
+  border-color: #ae00ff;
+  box-shadow: 0 0 30px rgba(174, 0, 255, 0.3);
+}
+
+.main-status {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.status-header h3 {
+  margin: 0;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  white-space: nowrap;
+  max-width: fit-content;
+}
+
+.status-text {
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.operational .status-dot {
+  background: #27c93f;
+  box-shadow: 0 0 10px #27c93f;
+}
+
+.partial .status-dot {
+  background: #ffbd2e;
+  box-shadow: 0 0 10px #ffbd2e;
+}
+
+.down .status-dot {
+  background: #ff5f56;
+  box-shadow: 0 0 10px #ff5f56;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover {
+  background: rgba(174, 0, 255, 0.1);
+}
+
+.service-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+/* Metrics Styles */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.metric-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-value {
+  font-size: 1.5em;
+  color: #ae00ff;
+  font-weight: bold;
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-label {
+  font-size: 0.9em;
+  color: #888;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-chart {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ae00ff 0%, #d58fff 100%);
+  border-radius: 2px;
+  transition: width 1s ease-in-out;
+}
+
+/* Game Compatibility Styles */
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.game-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.game-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.game-list::-webkit-scrollbar-thumb {
+  background: rgba(174, 0, 255, 0.3);
+  border-radius: 4px;
+}
+
+.game-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(174, 0, 255, 0.5);
+}
+
+.game-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(174, 0, 255, 0.1);
+}
+
+.game-item:hover {
+  background: rgba(174, 0, 255, 0.1);
+  border-color: rgba(174, 0, 255, 0.3);
+  transform: translateX(5px);
+}
+
+.game-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: rgba(174, 0, 255, 0.1);
+  border-radius: 6px;
+}
+
+.game-name {
+  flex: 1;
+}
+
+/* Updates Styles */
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.update-item {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.update-item:hover {
+  background: rgba(174, 0, 255, 0.1);
+}
+
+.update-time {
+  font-size: 0.8em;
+  color: #888;
+  white-space: nowrap;
+}
+
+.update-content {
+  flex: 1;
+}
+
+.update-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #d58fff;
+}
+
+.update-description {
+  font-size: 0.9em;
+  color: #888;
+}
+
+/* Responsive Design for Status Page */
+@media (max-width: 768px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-card {
+    padding: 20px;
   }
 }

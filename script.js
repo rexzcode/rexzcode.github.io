@@ -971,3 +971,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Status Page Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize metric charts
+  const metricCharts = document.querySelectorAll('.metric-chart');
+  metricCharts.forEach(chart => {
+    const value = parseFloat(chart.getAttribute('data-value'));
+    chart.style.width = '0%';
+    setTimeout(() => {
+      chart.style.width = value + '%';
+    }, 500);
+  });
+
+  // Simulate status updates
+  function updateServiceStatus() {
+    const services = document.querySelectorAll('.service-status');
+    services.forEach(service => {
+      // Random status updates for demo
+      const random = Math.random();
+      if (random > 0.95) {
+        service.className = 'service-status partial';
+        service.innerHTML = '<span class="status-dot"></span>Degraded';
+      } else if (random > 0.98) {
+        service.className = 'service-status down';
+        service.innerHTML = '<span class="status-dot"></span>Down';
+      }
+    });
+
+    // Update main status indicator
+    const mainStatus = document.querySelector('.status-indicator');
+    const downServices = document.querySelectorAll('.service-status.down').length;
+    const partialServices = document.querySelectorAll('.service-status.partial').length;
+
+    if (downServices > 0) {
+      mainStatus.className = 'status-indicator down';
+      mainStatus.innerHTML = '<span class="status-dot"></span><span class="status-text">Service Disruption</span>';
+    } else if (partialServices > 0) {
+      mainStatus.className = 'status-indicator partial';
+      mainStatus.innerHTML = '<span class="status-dot"></span><span class="status-text">Partial Outage</span>';
+    } else {
+      mainStatus.className = 'status-indicator operational';
+      mainStatus.innerHTML = '<span class="status-dot"></span><span class="status-text">All Systems Operational</span>';
+    }
+  }
+
+  // Update metrics periodically
+  function updateMetrics() {
+    const metrics = document.querySelectorAll('.metric-item');
+    metrics.forEach(metric => {
+      const value = metric.querySelector('.metric-value');
+      const chart = metric.querySelector('.metric-chart');
+      const currentValue = parseFloat(value.textContent);
+      
+      // Add small random fluctuation
+      let newValue = currentValue + (Math.random() - 0.5) * 2;
+      
+      // Keep within reasonable bounds
+      if (value.textContent.includes('%')) {
+        newValue = Math.min(100, Math.max(95, newValue));
+        value.textContent = newValue.toFixed(1) + '%';
+      } else if (value.textContent.includes('ms')) {
+        newValue = Math.min(60, Math.max(10, newValue));
+        value.textContent = Math.round(newValue) + 'ms';
+      }
+      
+      // Update chart width
+      chart.style.width = (newValue) + '%';
+    });
+  }
+
+  // Update timestamps
+  function updateTimestamps() {
+    const times = document.querySelectorAll('.update-time');
+    times.forEach(time => {
+      const text = time.textContent;
+      const number = parseInt(text);
+      if (text.includes('hours')) {
+        time.textContent = (number + 1) + ' hours ago';
+      } else if (text.includes('day')) {
+        time.textContent = (number + 1) + ' days ago';
+      }
+    });
+  }
+
+  // Set update intervals
+  setInterval(updateServiceStatus, 30000); // Every 30 seconds
+  setInterval(updateMetrics, 5000);        // Every 5 seconds
+  setInterval(updateTimestamps, 3600000);  // Every hour
+});
