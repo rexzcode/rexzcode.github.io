@@ -552,5 +552,330 @@ class LoadingAnimation {
 
 // Initialize loading animation when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-  new LoadingAnimation();
+  // Check if this is a refresh
+  const isRefresh = localStorage.getItem('hasLoaded');
+  
+  if (isRefresh) {
+    // Skip loading animation
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadingCanvas = document.getElementById('loading-canvas');
+    const loadingBar = document.querySelector('.loading-bar');
+    
+    // Hide loading elements immediately
+    loadingScreen.style.display = 'none';
+    loadingCanvas.style.display = 'none';
+    loadingBar.style.display = 'none';
+    
+    // Start title animation immediately
+    const style = document.createElement('style');
+    style.textContent = `
+      .title-layers {
+        animation: rotate3d 20s infinite linear !important;
+      }
+      .title-layer.scan {
+        animation: scan 2s infinite linear !important;
+      }
+      .title-layer.particles::before {
+        animation: particlePulse 4s infinite !important;
+      }
+      .title-layer.particles::after {
+        animation: particlePulse 4s infinite reverse !important;
+      }
+      .title-layer.glow {
+        animation: glowPulse 3s infinite !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Enable scrolling
+    document.body.style.overflow = '';
+  } else {
+    // First time visit - show loading animation
+    new LoadingAnimation();
+    localStorage.setItem('hasLoaded', 'true');
+  }
+});
+
+// Section Animations
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.1
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.section-container').forEach(section => {
+  sectionObserver.observe(section);
+});
+
+// Copy Button Functionality
+document.querySelectorAll('.copy-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const promptText = button.closest('.use-case-prompt').querySelector('.prompt-text').textContent;
+    navigator.clipboard.writeText(promptText).then(() => {
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      button.style.background = 'rgba(0, 255, 0, 0.3)';
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+      }, 2000);
+    });
+  });
+});
+
+// Terminal Typing Effect
+function typeText(element, text, speed = 50) {
+  let index = 0;
+  element.textContent = '';
+  
+  function type() {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      element.classList.remove('typing');
+    }
+  }
+  
+  element.classList.add('typing');
+  type();
+}
+
+document.querySelectorAll('.terminal-content').forEach(terminal => {
+  const text = terminal.getAttribute('data-text');
+  if (text) {
+    typeText(terminal, text);
+  }
+});
+
+// Timeline Animation
+const timelineItems = document.querySelectorAll('.timeline-item');
+timelineItems.forEach((item, index) => {
+  item.style.animationDelay = `${0.2 * index}s`;
+});
+
+// Hover Cards
+document.querySelectorAll('.glow-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    const content = card.querySelector('.card-hover-content');
+    if (content) {
+      content.style.height = `${content.scrollHeight}px`;
+    }
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    const content = card.querySelector('.card-hover-content');
+    if (content) {
+      content.style.height = '0';
+    }
+  });
+});
+
+// Security Features Animation
+const securityFeatures = document.querySelectorAll('.security-feature');
+securityFeatures.forEach((feature, index) => {
+  feature.style.animationDelay = `${0.2 * index}s`;
+});
+
+// Neuron Background Animation
+function createNeuronEffect(container) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  container.appendChild(canvas);
+  
+  function resize() {
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+  }
+  
+  resize();
+  window.addEventListener('resize', resize);
+  
+  const neurons = [];
+  const connections = [];
+  const numNeurons = 30;
+  
+  class Neuron {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.radius = Math.random() * 2 + 1;
+    }
+    
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(174, 0, 255, 0.5)';
+      ctx.fill();
+    }
+  }
+  
+  for (let i = 0; i < numNeurons; i++) {
+    neurons.push(new Neuron());
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    neurons.forEach(neuron => {
+      neuron.update();
+      neuron.draw();
+    });
+    
+    neurons.forEach((n1, i) => {
+      neurons.slice(i + 1).forEach(n2 => {
+        const dx = n2.x - n1.x;
+        const dy = n2.y - n1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          ctx.beginPath();
+          ctx.moveTo(n1.x, n1.y);
+          ctx.lineTo(n2.x, n2.y);
+          ctx.strokeStyle = `rgba(174, 0, 255, ${0.2 * (1 - distance / 100)})`;
+          ctx.stroke();
+        }
+      });
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+}
+
+document.querySelectorAll('.neuron-bg').forEach(createNeuronEffect);
+
+// Script Generation
+const scriptExamples = {
+  "teleport": `local player = game.Players.LocalPlayer
+local character = player.Character
+if character then
+    character:SetPrimaryPartCFrame(
+        CFrame.new(Vector3.new(0, 500, 0))
+    )
+end`,
+  "fly": `local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoid = character:FindFirstChild("Humanoid")
+local rootPart = character:FindFirstChild("HumanoidRootPart")
+
+if humanoid and rootPart then
+    local flying = false
+    local speed = 50
+    
+    local function fly()
+        flying = not flying
+        if flying then
+            humanoid.PlatformStand = true
+            local bodyGyro = Instance.new("BodyGyro")
+            local bodyVelocity = Instance.new("BodyVelocity")
+            
+            bodyGyro.Parent = rootPart
+            bodyVelocity.Parent = rootPart
+            
+            bodyGyro.P = 9e4
+            bodyGyro.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+            bodyGyro.cf = rootPart.CFrame
+            
+            bodyVelocity.velocity = Vector3.new(0, 0, 0)
+            bodyVelocity.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        else
+            humanoid.PlatformStand = false
+            for _, v in pairs(rootPart:GetChildren()) do
+                if v:IsA("BodyGyro") or v:IsA("BodyVelocity") then
+                    v:Destroy()
+                end
+            end
+        end
+    end
+    
+    local function onInputBegan(input)
+        if input.KeyCode == Enum.KeyCode.F then
+            fly()
+        end
+    end
+    
+    game:GetService("UserInputService").InputBegan:Connect(onInputBegan)
+end`,
+  "speed": `local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoid = character:FindFirstChild("Humanoid")
+
+if humanoid then
+    humanoid.WalkSpeed = 32 -- Default is 16
+end`,
+  "jump": `local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoid = character:FindFirstChild("Humanoid")
+
+if humanoid then
+    humanoid.JumpPower = 100 -- Default is 50
+end`,
+  "noclip": `local player = game.Players.LocalPlayer
+local character = player.Character
+
+if character then
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+end`
+};
+
+function generateScript(prompt) {
+  const promptLower = prompt.toLowerCase();
+  let script = "No script found for that request. Try something like:\n";
+  script += "- 'teleport to the top'\n";
+  script += "- 'make me fly'\n";
+  script += "- 'increase my speed'\n";
+  script += "- 'make me jump higher'\n";
+  script += "- 'make me noclip'";
+  
+  for (const [key, value] of Object.entries(scriptExamples)) {
+    if (promptLower.includes(key)) {
+      script = value;
+      break;
+    }
+  }
+  
+  return script;
+}
+
+document.querySelector('.generate-btn').addEventListener('click', () => {
+  const input = document.querySelector('.prompt-input');
+  const scriptContainer = document.querySelector('.generated-script');
+  
+  if (input.value.trim()) {
+    const script = generateScript(input.value);
+    scriptContainer.textContent = script;
+    scriptContainer.style.display = 'block';
+  }
+});
+
+document.querySelector('.prompt-input').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    document.querySelector('.generate-btn').click();
+  }
 });
