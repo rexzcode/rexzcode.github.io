@@ -119,5 +119,37 @@
     });
   </script>
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      const glow = document.createElement("div");
+      glow.className = "cursor-glow";
+      glow.style.left = (e.clientX) + "px";
+      glow.style.top = (e.clientY) + "px";
+      glow.style.position = "fixed";
+      document.body.appendChild(glow);
+      setTimeout(() => glow.remove(), 600);
+    });
+  </script>
+  
+  <style>
+    .cursor-glow {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #ae00ff;
+      pointer-events: none;
+      opacity: 0.5;
+      filter: blur(8px);
+      transform: translate(-50%, -50%);
+      animation: fadeOut 0.6s ease-out;
+      z-index: 0;
+    }
+    
+    @keyframes fadeOut {
+      0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+    }
+  </style>
 </body>
 </html> 

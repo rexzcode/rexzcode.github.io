@@ -34,7 +34,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 #typing {
@@ -182,16 +182,16 @@ nav li:hover {
 }
 
 .text-box {
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(26, 12, 45, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #fff;
   padding: 40px;
-  border-radius: 22px;
+  border-radius: 15px;
   width: 100%;
   flex: 1 1 300px;
-  box-shadow: 0 0 30px #ae00ff;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 30px rgba(174, 0, 255, 0.3);
+  border: 1px solid rgba(174, 0, 255, 0.2);
   text-align: left;
   transition: all 0.3s ease;
   font-size: 18px;
@@ -244,6 +244,8 @@ nav ul {
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
+  position: relative;
+  z-index: 1;
 }
 
 .profile-pic-wrapper {
@@ -305,21 +307,23 @@ nav ul {
 }
 
 .terminal-box {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 2px solid #ae00ff;
-  border-radius: 12px;
+  background: rgba(26, 12, 45, 0.8);
+  border: 1px solid rgba(174, 0, 255, 0.2);
+  border-radius: 15px;
   padding: 20px;
   margin: 20px auto;
   max-width: 600px;
   height: 200px;
   overflow: hidden;
-  box-shadow: 0 0 20px #ae00ff;
+  box-shadow: 0 0 20px rgba(174, 0, 255, 0.3);
   color: #d9d9ff;
   font-family: 'Courier New', monospace;
   font-size: 16px;
   backdrop-filter: blur(10px);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  z-index: 1;
 }
 
 .terminal-box::-webkit-scrollbar {
@@ -383,8 +387,10 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 60px; /* ← this is what creates the space */
+  gap: 60px;
   margin-top: 40px;
+  position: relative;
+  z-index: 1;
 }
   
 

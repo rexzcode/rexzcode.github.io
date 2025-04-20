@@ -307,7 +307,7 @@ function createNeuronEffect(container) {
           ctx.lineTo(n2.x, n2.y);
           ctx.strokeStyle = `rgba(174, 0, 255, ${0.2 * (1 - distance / 100)})`;
           ctx.lineWidth = 2;
-          this.ctx.stroke();
+          ctx.stroke();
         }
       });
     });
