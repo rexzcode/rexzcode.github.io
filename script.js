@@ -576,22 +576,19 @@ document.addEventListener('DOMContentLoaded', function() {
     metrics.forEach(metric => {
       const value = metric.querySelector('.metric-value');
       const chart = metric.querySelector('.metric-chart');
-      const currentValue = parseFloat(value.textContent);
+      if (!value || !chart) return; // Skip if elements don't exist
       
-      // Add small random fluctuation
-      let newValue = currentValue + (Math.random() - 0.5) * 2;
+      const currentValue = parseInt(value.textContent);
+      const newValue = Math.max(0, Math.min(100, currentValue + (Math.random() * 20 - 10)));
       
-      // Keep within reasonable bounds
-      if (value.textContent.includes('%')) {
-        newValue = Math.min(100, Math.max(95, newValue));
-        value.textContent = newValue.toFixed(1) + '%';
-      } else if (value.textContent.includes('ms')) {
-        newValue = Math.min(60, Math.max(10, newValue));
+      if (value) {
         value.textContent = Math.round(newValue) + 'ms';
       }
       
-      // Update chart width
-      chart.style.width = (newValue) + '%';
+      // Update chart width only if chart exists
+      if (chart) {
+        chart.style.width = (newValue) + '%';
+      }
     });
   }
 
