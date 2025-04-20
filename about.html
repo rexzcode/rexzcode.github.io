@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Solace</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Pages</button>
+        <div class="nav-dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="download.html">Download</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Menu</button>
+        <div class="nav-dropdown-content">
+          <a href="#mission">Mission</a>
+          <a href="#team">Team</a>
+          <a href="#technology">Technology</a>
+          <a href="#community">Community</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-center">
+      <div class="solace-title">
+        <span class="letter" data-letter="S">S</span>
+        <span class="letter" data-letter="o">o</span>
+        <span class="letter" data-letter="l">l</span>
+        <span class="letter" data-letter="a">a</span>
+        <span class="letter" data-letter="c">c</span>
+        <span class="letter" data-letter="e">e</span>
+      </div>
+    </div>
+    <ul class="nav-right">
+      <li><a href="https://discord.gg/2dp63SsEf5" target="_blank">Discord</a></li>
+      <li><a href="https://www.youtube.com/@Rexi_ZTF" target="_blank">YouTube</a></li>
+    </ul>
+  </nav>
+
+  <section id="about" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">About Solace</h2>
+      <div class="about-content">
+        <div class="about-card">
+          <h3>Our Mission</h3>
+          <p>Solace was created with a single purpose: to provide a safe, reliable, and intelligent solution for Roblox players. We believe in creating tools that enhance the gaming experience while maintaining the highest standards of security and performance.</p>
+        </div>
+        <div class="about-card">
+          <h3>The Team</h3>
+          <p>Behind Solace is a dedicated team of developers, security experts, and gaming enthusiasts. We're committed to continuous improvement and innovation, ensuring that Solace remains at the forefront of technology.</p>
+        </div>
+        <div class="about-card">
+          <h3>Technology</h3>
+          <p>Solace leverages cutting-edge AI technology to provide intelligent script generation and execution. Our advanced security measures and performance optimizations ensure a smooth and safe experience for all users.</p>
+        </div>
+        <div class="about-card">
+          <h3>Community</h3>
+          <p>We value our community above all else. Through our Discord server and social media channels, we maintain an open dialogue with our users, gathering feedback and implementing features that matter most to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h3>Discord</h3>
+          <p>Join our community for support and updates</p>
+          <a href="https://discord.gg/2dp63SsEf5" target="_blank" class="contact-link">Join Discord</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <p>For business inquiries and support</p>
+          <a href="mailto:support@solace.com" class="contact-link">Contact Us</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
+          <h3>Social Media</h3>
+          <p>Follow us for the latest updates</p>
+          <a href="https://www.youtube.com/@Rexi_ZTF" target="_blank" class="contact-link">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button id="scrollToTop" class="scroll-to-top">
+    <span>↑</span>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.topology.min.js"></script>
+  <script>
+    VANTA.TOPOLOGY({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xac00ff,
+      backgroundColor: 0x1a0c2d
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html> 

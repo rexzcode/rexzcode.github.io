@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Solace</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Pages</button>
+        <div class="nav-dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="download.html">Download</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Menu</button>
+        <div class="nav-dropdown-content">
+          <a href="#requirements">Requirements</a>
+          <a href="#installation">Installation</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-center">
+      <div class="solace-title">
+        <span class="letter" data-letter="S">S</span>
+        <span class="letter" data-letter="o">o</span>
+        <span class="letter" data-letter="l">l</span>
+        <span class="letter" data-letter="a">a</span>
+        <span class="letter" data-letter="c">c</span>
+        <span class="letter" data-letter="e">e</span>
+      </div>
+    </div>
+    <ul class="nav-right">
+      <li><a href="https://discord.gg/2dp63SsEf5" target="_blank">Discord</a></li>
+      <li><a href="https://www.youtube.com/@Rexi_ZTF" target="_blank">YouTube</a></li>
+    </ul>
+  </nav>
+
+  <section id="download" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">Download Solace</h2>
+      <div class="download-grid">
+        <div class="download-card">
+          <div class="card-icon">💎</div>
+          <h3>Premium Edition</h3>
+          <p>Full access to all features and priority support</p>
+          <div class="download-button">
+            <button class="download-btn premium">Download Premium</button>
+            <span class="version">v1.0.0</span>
+          </div>
+        </div>
+        <div class="download-card">
+          <div class="card-icon">✨</div>
+          <h3>Free Edition</h3>
+          <p>Basic features with community support</p>
+          <div class="download-button">
+            <button class="download-btn free">Download Free</button>
+            <span class="version">v1.0.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="requirements" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">System Requirements</h2>
+      <div class="requirements-grid">
+        <div class="requirement-card">
+          <h3>Minimum</h3>
+          <ul class="requirement-list">
+            <li>Windows 10/11 (64-bit)</li>
+            <li>Intel Core i3 or equivalent</li>
+            <li>4GB RAM</li>
+            <li>500MB free storage</li>
+            <li>DirectX 11 compatible GPU</li>
+          </ul>
+        </div>
+        <div class="requirement-card">
+          <h3>Recommended</h3>
+          <ul class="requirement-list">
+            <li>Windows 10/11 (64-bit)</li>
+            <li>Intel Core i5 or equivalent</li>
+            <li>8GB RAM</li>
+            <li>1GB free storage</li>
+            <li>DirectX 12 compatible GPU</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="installation" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">Installation Guide</h2>
+      <div class="installation-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Download the Installer</h3>
+            <p>Choose your preferred edition and download the installer</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Run the Installer</h3>
+            <p>Double-click the downloaded file and follow the installation wizard</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Complete Setup</h3>
+            <p>Wait for the installation to complete and launch Solace</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-container">
+    <div class="section-content">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is Solace safe to use?</h3>
+          <p>Yes, Solace is completely safe to use. We prioritize user security and privacy above all else.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What's the difference between Premium and Free?</h3>
+          <p>Premium includes advanced features, priority support, and early access to new updates.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I need to update manually?</h3>
+          <p>No, Solace automatically checks for and installs updates in the background.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I switch between editions?</h3>
+          <p>Yes, you can upgrade to Premium at any time while keeping your settings and data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button id="scrollToTop" class="scroll-to-top">
+    <span>↑</span>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.topology.min.js"></script>
+  <script>
+    VANTA.TOPOLOGY({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xac00ff,
+      backgroundColor: 0x1a0c2d
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html> 
