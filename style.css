@@ -335,20 +335,10 @@ nav ul {
   min-height: 160px;
 }
 
-#musicToggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  font-size: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #ae00ff;
-  backdrop-filter: blur(6px);
-  z-index: 999;
+#musicToggle,
+#musicToggle .track-name,
+#musicToggle.expanded {
+  display: none;
 }
 
 .terminal-header {
@@ -381,6 +371,7 @@ nav ul {
 #page-content {
   position: relative;
   z-index: 1;
+  padding: 2rem;
 }
 
 .text-box-wrapper {
@@ -393,38 +384,6 @@ nav ul {
   z-index: 1;
 }
   
-
-#musicToggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 14px;
-  font-size: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 0 12px #ae00ff;
-  backdrop-filter: blur(6px);
-  z-index: 999;
-  transition: all 0.2s ease;
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-#musicToggle .track-name {
-  display: inline-block;
-  opacity: 1;
-  font-size: 16px;
-}
-
-#musicToggle.expanded {
-  padding-right: 20px;
-}
 
 .about-section {
   padding: 40px 20px;
